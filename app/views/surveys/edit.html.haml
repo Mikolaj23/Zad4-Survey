@@ -1,0 +1,25 @@
+- if @survey.user_id == current_user.id
+  - form_for(@survey) do |f|
+    %p= f.error_messages :header_message => 'Błąd', :message => 'Nieprawidłowo wypełniłeś następujące pola:'
+    %p= f.label :title, "Tytuł:"
+    %p= f.text_field :title
+    %p= f.label :description, "Opis:"
+    %p= f.text_area :description
+    %p= f.submit "Zapisz"
+
+  - @survey.questions.each do |q|
+    %p= q.id
+    - form_for [q.survey, q] do |f|
+      %p= f.label :content, "Pytanie:"
+      %p= f.text_area :content
+      %p= f.label :answers, "Odpowiedzi:"
+      %p= f.text_area :answers
+      %p= f.submit
+
+    %hr
+  - form_for [@new_question.survey, @new_question], :url => {:action => 'create'} do |f|
+    %p= f.select :question_type_id, (@question_types.collect {|t| [t.label,t.id]}) 
+    %p= f.submit "Nowe pytanie" 
+- else
+  %p Nie możesz edytować tej ankiety ponieważ nie jesteś jej właścicielem :(
+  %p= link_to "Wróć", surveys_path

@@ -1,0 +1,13 @@
+%h1= @survey.title
+%p= @survey.description
+- @survey.questions.each do |q|
+  %p=q.id.to_s + '. ' + (q.content == nil ? '' : q.content)
+  - if q.answers != nil 
+    - q.answers.split("\n").each do |a|
+      %p
+        %input{:type => 'radio', :name => 'q' + q.id.to_s }= a 
+
+- if user_signed_in? && @survey.user_id == current_user.id 
+  %p= link_to "Edytuj", edit_survey_path
+
+%p= link_to "Wróć", surveys_path

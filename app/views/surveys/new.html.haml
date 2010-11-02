@@ -1,0 +1,6 @@
+- form_for @survey do |f|
+  %p= f.label :title, "Tytuł:"
+  %p= f.text_field :title
+  %p= f.label :description, "Opis:"
+  %p= f.text_area :description
+  %p= f.submit "Dodaj"

@@ -1,0 +1,6 @@
+%p Ankiety
+= link_to "Dodaj", new_survey_path
+- @surveys.each do |survey|
+  %p= link_to survey.title , { :action => 'show', :id => survey.id }
+
+

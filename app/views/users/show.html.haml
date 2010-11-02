@@ -1,0 +1,4 @@
+%h1= "Ankiety użytkownika #{@user.email}"
+
+- @user.surveys.each do |survey|
+  %p= link_to survey.title, survey_path(survey.id)

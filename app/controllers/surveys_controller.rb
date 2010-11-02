@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
 
-  before_filter :authorise, :only => [:update, :destroy]
+  before_filter :user_signed, :only => [:new, :create]
+  before_filter :authorise, :only => [:update, :edit]
 
   def index
     @surveys = Survey.all
@@ -28,7 +29,6 @@ class SurveysController < ApplicationController
 
   def new
     @survey = Survey.new
-      redirect_to new_user_session_path unless user_signed_in?
   end
 
   def create
@@ -41,5 +41,9 @@ class SurveysController < ApplicationController
     def authorise
       @survey = Survey.find(params[:id])
       redirect_to surveys_path unless current_user.id == @survey.user_id
+    end
+
+    def user_signed
+      redirect_to new_user_session_path unless user_signed_in?
     end
 end

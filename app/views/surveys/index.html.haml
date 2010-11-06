@@ -1,4 +1,10 @@
 %p Ankiety
+
+- form_for @search, :url => surveys_path, :html => {:method => :get} do |f|
+  %p= f.label :title_or_description_contains, "Słowa kluczowe:"
+  =   f.text_field :title_or_description_contains
+  =   f.submit "Szukaj"
+
 = link_to "Dodaj", new_survey_path
 - @surveys.each do |survey|
   %p= link_to survey.title , { :action => 'show', :id => survey.id }

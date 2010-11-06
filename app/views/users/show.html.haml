@@ -1,4 +1,9 @@
 %h1= "Ankiety użytkownika #{@user.email}"
 
-- @user.surveys.each do |survey|
+- form_for @search, :url => user_path(:id => @user.id), :html => {:method => :get} do |f|
+  %p= f.label :title_or_description_contains, "Słowa kluczowe:"
+  =   f.text_field :title_or_description_contains
+  =   f.submit "Szukaj"
+
+- @surveys.each do |survey|
   %p= link_to survey.title, survey_path(survey.id)

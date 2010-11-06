@@ -4,7 +4,8 @@ class SurveysController < ApplicationController
   before_filter :authorise, :only => [:update, :edit]
 
   def index
-    @surveys = Survey.all
+    @search = Survey.search(params[:search])
+    @surveys = @search.all
   end
 
   def show

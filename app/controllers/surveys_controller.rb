@@ -5,7 +5,7 @@ class SurveysController < ApplicationController
 
   def index
     @search = Survey.search(params[:search])
-    @surveys = @search.all
+    @surveys = @search.all.paginate :page => params[:page], :per_page => 5
   end
 
   def show

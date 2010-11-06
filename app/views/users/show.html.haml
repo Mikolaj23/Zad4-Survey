@@ -7,3 +7,5 @@
 
 - @surveys.each do |survey|
   %p= link_to survey.title, survey_path(survey.id)
+
+%p= will_paginate @surveys

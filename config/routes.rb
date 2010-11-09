@@ -4,7 +4,7 @@ Survey3::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  root :to => "surveys#index"
+  root :to => 'surveys#index'
   resources :users	
   resources :surveys do
     resources :questions  

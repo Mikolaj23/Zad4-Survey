@@ -12,6 +12,11 @@ gem 'haml'
 gem 'meta_search'
 gem 'will_paginate', '~> 3.0.pre2'
 
+group :test, :development do
+  gem "rspec-rails", "~> 2.0.1"
+end
+
+gem "autotest"
 # Use unicorn as the web server
 # gem 'unicorn'
 
